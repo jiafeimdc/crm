@@ -21,10 +21,12 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 如果mybatis没有特殊的配置(比如别名等)，configLocation可以省去 ;否则，不能省略-->
         <property name="configLocation" value="classpath:mybatis_config.xml"/>
+        <!-- 扫描sql配置文件:mapper需要的xml文件 -->
+        <property name="mapperLocations" value="classpath*:/com/deng/crm/settings/mapper/*.xml" />
     </bean>
     <!-- mapper注解扫描器配置,扫描@MapperScan注解,自动生成代码对象 -->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.deng.crm.mapper"/>
+        <property name="basePackage" value="com.deng.crm.settings.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

@@ -9,11 +9,11 @@
     </settings>
 
     <typeAliases>
-        <package name="com.deng.crm.dao"/>
+        <package name="com.deng.crm.settings.model"/>
     </typeAliases>
 
+<!--    <mappers>-->
+<!--        <package name="com.deng.crm.settings.mapper"/>-->
+<!--    </mappers>-->
 
-    <mappers>
-        <package name="com.deng.crm.mapper"/>
-    </mappers>
 </configuration>
