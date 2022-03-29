@@ -110,6 +110,8 @@ public class UserController {
         return "redirect:/";
     }
 
+
+
     @ResponseBody
     @PostMapping("/settings/qx/user/test.do")
     public  Object login2() {
