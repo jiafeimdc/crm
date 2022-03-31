@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ActivityContorller {
@@ -65,6 +67,30 @@ public class ActivityContorller {
         return returnObject;
     }
 
+
+
+    @RequestMapping("/workbench/activity/queryActivityByPage.do")
+    public @ResponseBody Object queryActivityByPage(String name,String owner,String startDate,String endDate,int pageNo,int pageSize){
+        Map<String,Object> map=new HashMap<>();
+        map.put("name",name);
+        map.put("owner",owner);
+        map.put("startDate",startDate);
+        map.put("endDate",endDate);
+        map.put("beginNo",(pageNo-1)*pageSize);
+        map.put("pageSize",pageSize);
+        List<Activity> activityList = activityService.selectActivityByPage(map);
+        int totalRows=activityService.selectCountOfActivityByCondition(map);
+        //根据查询结果结果，生成响应信息
+        Map<String,Object> retMap=new HashMap<>();
+        retMap.put("activityList",activityList);
+        retMap.put("totalRows",totalRows);
+
+        ReturnObject returnObject=new ReturnObject();
+        returnObject.setCode(Contants.RETURN_OBJECT_CODE_SUCCESS);
+        returnObject.setRetData(retMap);
+        //请求转发
+        return returnObject;
+    }
 
 
 }
